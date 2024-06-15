@@ -2,6 +2,7 @@ package snake.states;
 
 import flixel.FlxState;
 import snake.objects.Apple;
+import snake.objects.Snake;
 
 /**
  * The main game.
@@ -11,10 +12,12 @@ import snake.objects.Apple;
 class PlayState extends FlxState
 {
 	var apple:Apple;
+	var snake:Snake;
 
 	override public function create():Void
 	{
 		setupApple();
+		setupSnake();
 
 		super.create();
 	}
@@ -24,17 +27,33 @@ class PlayState extends FlxState
 		apple = new Apple();
 		apple.setPosition(apple.getRandomX(), apple.getRandomY());
 		add(apple);
+	}
 
-		repositionApple();
+	function setupSnake():Void
+	{
+		snake = new Snake(FlxG.width / 2, FlxG.height / 2);
+		add(snake);
+
+		snake.addSnake(1);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
+		checkApple();
+
 		#if debug
 		if (FlxG.keys.justPressed.L)
 			apple.regenerate();
 		#end
 
 		super.update(elapsed);
+	}
+
+	function checkApple():Void
+	{
+		if (FlxG.overlap(snake, apple))
+		{
+			apple.regenerate();
+		}
 	}
 }
