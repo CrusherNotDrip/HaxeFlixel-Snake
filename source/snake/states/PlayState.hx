@@ -1,8 +1,7 @@
 package snake.states;
 
-import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.util.FlxTimer;
+import snake.objects.Apple;
 
 /**
  * The main game.
@@ -11,9 +10,9 @@ import flixel.util.FlxTimer;
  */
 class PlayState extends FlxState
 {
-	var apple:FlxSprite;
+	var apple:Apple;
 
-	public override function create():Void
+	override public function create():Void
 	{
 		setupApple();
 
@@ -22,43 +21,20 @@ class PlayState extends FlxState
 
 	function setupApple():Void
 	{
-		apple = new FlxSprite();
-		apple.makeGraphic(Constants.OBJECT_SIZE, Constants.OBJECT_SIZE, FlxColor.RED);
+		apple = new Apple();
+		apple.setPosition(apple.getRandomX(), apple.getRandomY());
 		add(apple);
 
 		repositionApple();
 	}
 
-	public override function update(elapsed:Float):Void
+	override public function update(elapsed:Float):Void
 	{
 		#if debug
 		if (FlxG.keys.justPressed.L)
-			resetApple();
+			apple.regenerate();
 		#end
 
 		super.update(elapsed);
-	}
-
-	function repositionApple():Void
-	{
-		apple.setPosition(FlxG.random.int(0, FlxG.width), FlxG.random.int(0, FlxG.height));
-	}
-
-	var appleResetTimer:FlxTimer = new FlxTimer();
-
-	function resetApple():Void
-	{
-		apple.kill();
-
-		if (appleResetTimer.active)
-			appleResetTimer.reset();
-		else
-		{
-			appleResetTimer.start(0.5, function(regenerateApple:FlxTimer)
-			{
-				repositionApple();
-				apple.revive();
-			});
-		}
 	}
 }
