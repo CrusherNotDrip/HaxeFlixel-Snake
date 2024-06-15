@@ -16,8 +16,12 @@ class PlayState extends FlxState
 
 	override public function create():Void
 	{
+		trace('PlayState opened! Attempting to initialize everything...');
+
 		setupApple();
 		setupSnake();
+
+		trace('Initialized everything!');
 
 		super.create();
 	}
@@ -27,6 +31,8 @@ class PlayState extends FlxState
 		apple = new Apple();
 		apple.setPosition(apple.getRandomX(), apple.getRandomY());
 		add(apple);
+
+		trace('Initialized Apple!');
 	}
 
 	function setupSnake():Void
@@ -35,6 +41,8 @@ class PlayState extends FlxState
 		add(snake);
 
 		snake.addSnake(1);
+
+		trace('Initialized Snake!');
 	}
 
 	override public function update(elapsed:Float):Void
@@ -53,6 +61,8 @@ class PlayState extends FlxState
 	{
 		if (FlxG.overlap(snake, apple))
 		{
+			trace('Snake touched Apple!');
+
 			apple.regenerate();
 		}
 	}

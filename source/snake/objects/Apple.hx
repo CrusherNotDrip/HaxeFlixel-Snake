@@ -22,6 +22,8 @@ class Apple extends FlxSprite
 	 */
 	public function regenerate():Void
 	{
+		trace('Attempting to reset the apple...');
+
 		kill();
 
 		if (appleResetTimer.active)
@@ -31,6 +33,7 @@ class Apple extends FlxSprite
 			appleResetTimer.start(0.5, function(regenTimer:FlxTimer):Void
 			{
 				reset(getRandomX(), getRandomY());
+				trace('Successfully reset apple! New apple position: $x | $y');
 			});
 		}
 	}

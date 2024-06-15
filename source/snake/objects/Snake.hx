@@ -33,6 +33,8 @@ class Snake extends FlxSpriteGroup
 			snake.ID = SNAKE_ID;
 			add(snake);
 
+			trace('Added Snake with ID ' + snake.ID);
+
 			SNAKE_ID++;
 		}
 	}
