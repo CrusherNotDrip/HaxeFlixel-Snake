@@ -20,7 +20,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@v1.5.1
         with:
-          haxe-version: latest
+          haxe-version: 4.3.3
 
       # Install and Setup Haxe Module Manager.
       - name: Setup Haxe Module Manager
@@ -53,7 +53,7 @@ jobs:
     - name: Setup Haxe
       uses: krdlab/setup-haxe@v1.5.1
       with:
-        haxe-version: latest
+        haxe-version: 4.3.3
 
     # Install and Setup Haxe Module Manager.
     - name: Setup Haxe Module Manager
