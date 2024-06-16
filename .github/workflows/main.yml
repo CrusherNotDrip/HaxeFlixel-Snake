@@ -20,7 +20,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: latest
+          haxe-version: 4.3.3
 
       # Install and Setup Haxe Module Manager.
       - name: Setup Haxe Module Manager
@@ -43,40 +43,6 @@ jobs:
           name: Snake-Windows-Release
           path: ./export/windows/bin/
 
-  # Mac Release Builds.
-  MacRelease:
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      # Setup Haxe.
-      - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
-        with:
-          haxe-version: 4.2.5
-
-      # Install and Setup Haxe Module Manager.
-      - name: Setup Haxe Module Manager
-        run: |
-          haxelib install --quiet hmm 
-          cd ${{ github.workspace }}
-
-      # Install all Haxelibs listed in Haxe Module Manager.
-      - name: Install Required Haxelibs via Haxe Module Manager.
-        run: haxelib run hmm install
-
-      # Build the game.
-      - name: Build
-        run: haxelib run lime build mac
-  
-      # Upload the game.
-      - name: Upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: Snake-Mac-Release
-          path: ./export/mac/bin/
-
   # HTML5 Release Builds.
   HTML5Release:
     runs-on: ubuntu-latest
@@ -87,7 +53,7 @@ jobs:
     - name: Setup Haxe
       uses: krdlab/setup-haxe@master
       with:
-        haxe-version: latest
+        haxe-version: 4.3.3
 
     # Install and Setup Haxe Module Manager.
     - name: Setup Haxe Module Manager
