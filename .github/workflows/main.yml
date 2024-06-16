@@ -45,7 +45,7 @@ jobs:
 
   # Mac Release Builds.
   MacRelease:
-    runs-on: mac-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
