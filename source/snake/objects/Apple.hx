@@ -40,11 +40,11 @@ class Apple extends FlxSprite
 
 	public function getRandomX():Int
 	{
-		return FlxG.random.int(0, Math.floor(FlxG.width - width));
+		return FlxG.random.int(0, Math.round(FlxG.width - width));
 	}
 
 	public function getRandomY():Int
 	{
-		return FlxG.random.int(0, Math.floor(FlxG.height - height));
+		return FlxG.random.int(0, Math.round(FlxG.height - height));
 	}
 }

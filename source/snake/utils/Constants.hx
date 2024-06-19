@@ -1,7 +1,7 @@
 package snake.utils;
 
 /**
- * A class full of final variables.
+ * A class full of final variables that you would use a lot.
  */
 class Constants
 {
