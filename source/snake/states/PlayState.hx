@@ -37,7 +37,7 @@ class PlayState extends FlxState
 
 	function setupSnake():Void
 	{
-		snake = new Snake(FlxG.width / 2, FlxG.height / 2);
+		snake = new Snake(0, 0);
 		add(snake);
 
 		snake.addSnake(1);
@@ -59,11 +59,12 @@ class PlayState extends FlxState
 
 	function checkApple():Void
 	{
-		if (FlxG.overlap(snake, apple))
+		if (FlxG.overlap(snake.members[0], apple))
 		{
 			trace('Snake touched Apple!');
 
 			apple.regenerate();
+			snake.addSnake(1);
 		}
 	}
 }
